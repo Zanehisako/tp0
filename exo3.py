@@ -1,19 +1,22 @@
 import math
 
-def calculate_surface(N):
-    # Maximiser la surface : forcer une dimension à être 1
-    max_surface = 2 * (N + N + 1)
+def calculate_surface(i,j,k):
+    return (2*(i*j) +2*(i*k)+ 2*(j*k))  
+
+def calculate_surface_max_min(N):
+    combinations = []
+    for i in range(1,N):
+        for j in range(1,N-i):
+            k = math.floor(N/(i*j))
+            if (i*j*k) == N:
+                print('the combinations are :',i,j,k)
+                surface = calculate_surface(i,j,k);
+                print('the result is :',surface)
+                combinations.append(surface) 
+    max_surface = max(combinations)
+    min_surface = min(combinations)
+
     
-    # Minimiser la surface : chercher les dimensions proches
-    min_surface = float('inf')
-    
-    for a in range(1, int(math.pow(N, 1/3)) + 1):
-        if N % a == 0:
-            for b in range(a, int(math.sqrt(N // a)) + 1):
-                if (N // a) % b == 0:
-                    c = N // (a * b)
-                    surface = 2 * (a*b + a*c + b*c)
-                    min_surface = min(min_surface, surface)
     
     return min_surface, max_surface
 
@@ -21,7 +24,7 @@ def calculate_surface(N):
 N = int(input())
 
 # Calcul des surfaces minimale et maximale
-min_surface, max_surface = calculate_surface(N)
+min_surface, max_surface = calculate_surface_max_min(N)
 
 # Affichage du résultat
 print(min_surface, max_surface)
