@@ -1,11 +1,7 @@
 def distribute_tasks(servers:list, k):
-    # Trier les serveurs par charge croissante
     servers.sort()
-    
     for _ in range(k):
-        # Ajouter une tâche au serveur le moins chargé
         servers[0] += 1
-        # Réinsérer le serveur à sa place correcte
         i = 0
         while i < len(servers) - 1 and servers[i] > servers[i + 1]:
             servers[i], servers[i + 1] = servers[i + 1], servers[i]

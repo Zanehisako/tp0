@@ -11,11 +11,11 @@ def calculate_surface_max_min(N):
         while True:
             k = math.floor(N/(i*j))
             if (i*j*k) == N:
-                print('the combinations are :',i,j,k)
+                #print('the combinations are :',i,j,k)
                 surface = calculate_surface(i,j,k);
-                print('the result is :',surface)
+                #print('the result is :',surface)
                 combinations.append(surface) 
-            if j>N-1:
+            if j>N-1-i:
                break 
             else:
                 j=j+1
@@ -26,6 +26,8 @@ def calculate_surface_max_min(N):
     
     
     return min_surface, max_surface
+
+
 
 # Lecture de l'entrée
 N = int(input())
